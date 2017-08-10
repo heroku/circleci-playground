@@ -25,7 +25,7 @@ jobs:
       - attach_workspace:
           at: workspace
       - run: ls
-      - run: cat build
+      - run: cat workspace/build
 # release_win_x32:
 #   <<: *defaults
 #   steps:
