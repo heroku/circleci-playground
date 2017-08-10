@@ -26,10 +26,17 @@ jobs:
           at: workspace
       - run: ls
       - run: cat workspace/build
-# release_win_x32:
-#   <<: *defaults
-#   steps:
-#     - run: cat windows_x32 > assets/windows_x32
+  release_win_x32:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: workspace
+      - run: ls
+      - run: mkdir assets
+      - run: cp workspace/build assets/windows_x32
+      - store_artifacts:
+          path: assets
+          destination: windows_x32
 # release_win_x64:
 #   <<: *defaults
 #   steps:
@@ -43,10 +50,15 @@ workflows:
       - test:
           requires:
             - build
-# - release_win_x32:
-#   requires:
-#     - test
-#     - build
+      - release_win_x32:
+          requires:
+            - test
+            - build
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
 # - release_win_x64:
 #   requires:
 #     - build
