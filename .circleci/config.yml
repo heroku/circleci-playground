@@ -21,9 +21,9 @@ jobs:
             - build
   test:
     <<: *defaults
-    attach_workspace:
-        at: workspace
     steps:
+      - attach_workspace:
+          at: workspace
       - checkout
       - run: ls
       - run: cat build
