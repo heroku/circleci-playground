@@ -18,7 +18,7 @@ jobs:
     <<: *defaults
     steps:
       - run: ls
-      - run: echo "test"
+      - run: cat build
   # release_win_x32:
   #   <<: *defaults
   #   steps:
