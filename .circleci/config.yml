@@ -19,16 +19,14 @@ jobs:
     steps:
       - run: ls
       - run: cat build
-  # release_win_x32:
-  #   <<: *defaults
-  #   steps:
-  #     - checkout
-  #     - run: echo "release win 32"
-  # release_win_x64:
-  #   <<: *defaults
-  #   steps:
-  #     - checkout
-  #     - run: echo "release win 64"
+  release_win_x32:
+    <<: *defaults
+    steps:
+      - run: cat windows_x32 > assets/windows_x32
+# release_win_x64:
+#   <<: *defaults
+#   steps:
+#     - run: echo "release win 64"
 
 workflows:
   version: 2
@@ -38,9 +36,10 @@ workflows:
       - test:
         requires:
           - build
+      - release_win_x32:
+        requires:
+          - test
+          - build
 # - release_win_x64:
-#   requires:
-#     - build
-# - release_win_x32:
 #   requires:
 #     - build
