@@ -33,33 +33,38 @@ jobs:
           at: workspace
       - run: ls
       - run: mkdir assets
-      - run: cp workspace/build assets/windows_x32
+      - run: cp workspace/build assets/windows_x32.txt
       - store_artifacts:
           path: assets
-          destination: windows_x32
-# release_win_x64:
-#   <<: *defaults
-#   steps:
-#     - run: echo "release win 64"
+          destination: windows_x32.txt
+  release_win_x64:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: workspace
+      - run: ls
+      - run: mkdir assets
+      - run: cp workspace/build assets/windows_x64.txt
+      - store_artifacts:
+          path: assets
+          destination: windows_x64.txt
+
+all_tags: &all_tags
+  filters:
+    tags:
+      only: /.*/
 
 workflows:
   version: 2
   build_and_release:
     jobs:
       - build:
-          filters:
-            tags:
-              only: /.*/
+          <<: *all_tags
       - test:
-          filters:
-            tags:
-              only: /.*/
+          <<: *all_tags
           requires:
             - build
       - release_win_x32:
-          filters:
-            tags:
-              only: /.*/
           requires:
             - test
             - build
@@ -68,6 +73,12 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
-# - release_win_x64:
-#   requires:
-#     - build
+      - release_win_x64:
+          requires:
+            - test
+            - build
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
