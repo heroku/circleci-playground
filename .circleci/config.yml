@@ -22,7 +22,7 @@ jobs:
   test:
     <<: *defaults
     - attach_workspace:
-      at: workspace
+        at: workspace
     steps:
       - checkout
       - run: ls
