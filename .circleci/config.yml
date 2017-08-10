@@ -46,11 +46,20 @@ workflows:
   version: 2
   build_and_release:
     jobs:
-      - build
+      - build:
+          filters:
+            tags:
+              only: /.*/
       - test:
+          filters:
+            tags:
+              only: /.*/
           requires:
             - build
       - release_win_x32:
+          filters:
+            tags:
+              only: /.*/
           requires:
             - test
             - build
