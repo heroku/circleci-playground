@@ -35,12 +35,12 @@ workflows:
   build_and_release:
     jobs:
       - build
-      - test:
-        requires:
-          - build
-      # - release_win_x64:
-      #   requires:
-      #     - build
-      # - release_win_x32:
-      #   requires:
-      #     - build
+# - test:
+#   requires:
+#     - build
+# - release_win_x64:
+#   requires:
+#     - build
+# - release_win_x32:
+#   requires:
+#     - build
