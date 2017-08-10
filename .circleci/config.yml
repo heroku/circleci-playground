@@ -1,6 +1,5 @@
 ---
 defaults: &defaults
-  working_directory: ~/cli
   docker:
     - image: node:8
 
@@ -11,28 +10,29 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - run: pwd
       - run: ls
       - run: node -v
-      - run: echo "build"
+      - run: echo "build" > build
   test:
     <<: *defaults
     steps:
       - run: ls
       - run: echo "test"
-  release_win_x32:
-    <<: *defaults
-    steps:
-      - checkout
-      - run: echo "release win 32"
-  release_win_x64:
-    <<: *defaults
-    steps:
-      - checkout
-      - run: echo "release win 64"
+  # release_win_x32:
+  #   <<: *defaults
+  #   steps:
+  #     - checkout
+  #     - run: echo "release win 32"
+  # release_win_x64:
+  #   <<: *defaults
+  #   steps:
+  #     - checkout
+  #     - run: echo "release win 64"
 
 workflows:
   version: 2
-  build_and_test:
+  build_and_release:
     jobs:
       - build
       - test:
