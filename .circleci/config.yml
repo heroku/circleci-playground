@@ -34,6 +34,7 @@ jobs:
       - run: ls
       - run: mkdir assets
       - run: cp workspace/build assets/windows_x32.txt
+      - run: sleep 10
       - store_artifacts:
           path: assets
           destination: windows_x32.txt
@@ -45,6 +46,7 @@ jobs:
       - run: ls
       - run: mkdir assets
       - run: cp workspace/build assets/windows_x64.txt
+      - run: sleep 10
       - store_artifacts:
           path: assets
           destination: windows_x64.txt
