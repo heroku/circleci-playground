@@ -24,7 +24,6 @@ jobs:
     steps:
       - attach_workspace:
           at: workspace
-      - checkout
       - run: ls
       - run: cat build
 # release_win_x32:
