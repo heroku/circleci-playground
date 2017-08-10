@@ -11,12 +11,13 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - run: ls
       - run: node -v
       - run: echo "build"
   test:
     <<: *defaults
     steps:
-      - checkout
+      - run: ls
       - run: echo "test"
   release_win_x32:
     <<: *defaults
