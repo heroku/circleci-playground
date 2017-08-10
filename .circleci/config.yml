@@ -36,10 +36,10 @@ workflows:
       - test:
         requires:
           - build
-      - release_win_x32:
-        requires:
-          - test
-          - build
+# - release_win_x32:
+#   requires:
+#     - test
+#     - build
 # - release_win_x64:
 #   requires:
 #     - build
