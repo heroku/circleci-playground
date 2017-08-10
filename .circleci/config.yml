@@ -19,10 +19,10 @@ jobs:
     steps:
       - run: ls
       - run: cat build
-  release_win_x32:
-    <<: *defaults
-    steps:
-      - run: cat windows_x32 > assets/windows_x32
+# release_win_x32:
+#   <<: *defaults
+#   steps:
+#     - run: cat windows_x32 > assets/windows_x32
 # release_win_x64:
 #   <<: *defaults
 #   steps:
